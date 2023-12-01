@@ -56,14 +56,14 @@ body {
 }
 
 body.LOADING_OS {
-  background-color: rgb(14, 14, 122);
+  background-color: rgb(41, 41, 43);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
 }
 body.USER_SELECTION {
-  background-color: rgb(14 14 164);
+  background-color: rgb(16, 16, 160);
   display: flex;
   align-items: center;
   justify-content: center;
