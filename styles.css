@@ -92,7 +92,7 @@ body.USER_SELECTION {
   }
 }
 body.USER_DESKTOP {
-  background-color: beige;
+  background-color: var(--content__bg-color);
   display: flex;
   flex-direction: column;
   position: relative;
