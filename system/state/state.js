@@ -4,6 +4,9 @@ export let system = {
     list: [],
     current: null,
   },
+  device: {
+    battery: {},
+  },
   router: {},
   programs: [],
   ui: {
