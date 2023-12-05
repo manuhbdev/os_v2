@@ -15,6 +15,7 @@ async function boot_OS() {
   system.users.list = get_users(system.file_system);
   system.device.battery = batteryStatus;
   //
+
   setTimeout(() => {
     console.log('⚙️ system', system);
 
