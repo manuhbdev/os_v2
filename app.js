@@ -16,7 +16,8 @@ async function boot_OS() {
   system.device.battery = batteryStatus;
   //
   setTimeout(() => {
-    console.log('✅ system', system);
+    console.log('⚙️ system', system);
+
     show_user_selection();
   }, 1.5 * 1000);
 }

@@ -1,3 +1,4 @@
+import { vibration } from '../io/device/vibration.device.js';
 import { reset_ui, system } from '../state/state.js';
 import { show_user_desktop } from '../ui/pages/page_user_desktop.js';
 import { show_user_selection } from '../ui/pages/page_user_selection.js';
@@ -13,6 +14,7 @@ export function login(username, pwd = '') {
     user.is_logged_in = true;
     system.users.current = user;
     console.log('✅user', user);
+    vibration.vibrate();
     show_user_desktop(user);
   } else {
     console.warn('invalid_pwd');

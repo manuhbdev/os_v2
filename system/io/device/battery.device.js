@@ -10,6 +10,7 @@ class BatteryStatus {
   init() {
     if (this.supported) {
       this.supported = true;
+
       navigator.getBattery().then((battery) => {
         this.battery = battery;
         this.updateBatteryStatus();
@@ -25,10 +26,7 @@ class BatteryStatus {
     }
   }
   updateBatteryStatus() {
-    if (this.battery) {
-      this.target = this;
-      console.log('battery_changed', this.target);
-    }
+    this.target = this;
   }
 }
 
