@@ -4,7 +4,7 @@ class Indexed_DB {
     this.store_name = store_name;
   }
 
-  async openDB() {
+  openDB() {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.db_name, 1);
 

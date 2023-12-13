@@ -7,6 +7,8 @@ export const system_storage = {
   },
   load: function (key) {
     return idb.getData(key);
+    return localStorage.getItem(key);
+    return sessionStorage.getItem(key);
   },
   save_fs() {
     this.save(system.file_system);
