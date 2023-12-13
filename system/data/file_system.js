@@ -149,7 +149,7 @@ export async function load_file_system() {
 
       fs = create_default_file_system();
     } else {
-      console.log('[file_system]', 'found');
+      console.log('[file_system]', 'found', stored_fs);
       fs = stored_fs;
     }
   } catch (e) {
