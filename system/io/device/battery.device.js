@@ -27,7 +27,7 @@ class BatteryStatus {
   }
   updateBatteryStatus() {
     this.target = this;
-    console.log('battery-status changed', this.target);
+    // console.log('battery-status changed', this.target);
   }
 }
 

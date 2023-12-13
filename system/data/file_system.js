@@ -1,3 +1,4 @@
+import { Storage } from '../io/storage/storage.js';
 import { RESOURCE_TYPES } from '../ui/ui_models.js';
 
 export class TreeNode {
@@ -68,6 +69,7 @@ export function create_file_system() {
   home__directory.addChild(create_vfs_user('guest'));
   home__directory.addChild(create_vfs_user('admin'));
 
+  root.idb = 'fs';
   return root;
 }
 //
@@ -113,6 +115,11 @@ function create_vfs_user(username) {
 }
 export function create_new_dir(node, name) {
   const new_dir = new TreeNode(name, true);
+
+  if (!(node instanceof TreeNode)) {
+    add_tree_prototypes(node);
+  }
+
   node.addChild(new_dir);
   return new_dir;
 }
@@ -124,9 +131,31 @@ export function create_new_file(node, name) {
     RESOURCE_TYPES.FILE,
     'txt.svg'
   );
+  if (!(node instanceof TreeNode)) {
+    add_tree_prototypes(node);
+  }
+
   node.addChild(new_file);
   return new_file;
 }
-export function load_file_system() {
-  return null;
+export async function load_file_system() {
+  let fs = null;
+  try {
+    const stored_fs = await Storage.load('fs');
+    if (!stored_fs) {
+      console.warn('[file_system]', 'not found');
+      fs = create_file_system();
+    } else {
+      console.log('[file_system]', 'found');
+      fs = stored_fs;
+    }
+  } catch (e) {
+    fs = create_file_system();
+  }
+  return fs;
+}
+
+function add_tree_prototypes(node) {
+  const base_node = new TreeNode('base_node');
+  Object.setPrototypeOf(node, base_node);
 }

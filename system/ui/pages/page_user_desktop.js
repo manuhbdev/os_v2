@@ -1,4 +1,5 @@
 import { create_new_dir, create_new_file } from '../../data/file_system.js';
+import { Storage } from '../../io/storage/storage.js';
 import { Folder } from '../../programs/folder.js';
 import { Notepad } from '../../programs/notepad.js';
 import { Papelera } from '../../programs/papelera.js';
@@ -266,6 +267,7 @@ function set_actions(actions) {
           break;
       }
       hide_context_menu();
+      Storage.save_fs();
     };
   });
 }

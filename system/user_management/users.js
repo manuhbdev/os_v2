@@ -1,4 +1,25 @@
-export function get_users(file_system) {
+import { Storage } from '../io/storage/storage.js';
+import { system } from '../state/state.js';
+
+export async function load_users() {
+  let users = null;
+  try {
+    const stored_users = await Storage.load('users');
+    if (!stored_users) {
+      console.warn('[users]', 'not found');
+      users = get_users_from_directory(system.file_system);
+    } else {
+      console.log('[users]', 'found');
+      users = stored_users;
+    }
+  } catch (error) {
+    users = get_users_from_directory(system.file_system);
+  }
+
+  return users;
+}
+
+function get_users_from_directory(file_system) {
   const root = file_system;
   const home = root.children.find((node) => node.name === 'home');
   const users = home.children.map((node) => ({
@@ -9,5 +30,9 @@ export function get_users(file_system) {
     is_logged_in: false,
   }));
 
-  return users;
+  return {
+    idb: 'users',
+    list: users,
+    current: null,
+  };
 }

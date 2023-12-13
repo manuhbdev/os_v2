@@ -1,6 +1,8 @@
-export let system = {
+let initial_state = {
+  id: 'os',
   file_system: {},
   users: {
+    idb: 'users',
     list: [],
     current: null,
   },
@@ -15,7 +17,7 @@ export let system = {
     windows: [],
   },
 };
-
+export let system = initial_state;
 export function reset_ui() {
   system.ui.desktop_icons = [];
   system.ui.windows = [];

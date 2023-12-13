@@ -1,3 +1,4 @@
+import { Storage } from '../io/storage/storage.js';
 import { create_resource_name, dragElement } from '../utils.js';
 import { set_window_name } from './pages/page_user_desktop.js';
 
@@ -57,7 +58,9 @@ export class DesktopIcon {
           .map((node) => node.name);
         const prev_name = this.app.node.name;
         this.name = create_resource_name(cleanName, list);
+
         this.app.node.name = cleanName;
+        Storage.save_fs();
         set_window_name(prev_name, this.app.node);
       });
     } else {
