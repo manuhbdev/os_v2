@@ -1,4 +1,4 @@
-import { Storage } from '../io/storage/storage.js';
+import { system_storage } from '../io/storage/storage.js';
 import { RESOURCE_TYPES } from '../ui/ui_models.js';
 
 export class TreeNode {
@@ -30,7 +30,7 @@ export class TreeNode {
     }
   }
 }
-export function create_file_system() {
+export function create_default_file_system() {
   const root = new TreeNode('root', true);
   // create-nodes
   const bin__directory = new TreeNode('bin', true); // User Binaries
@@ -141,16 +141,16 @@ export function create_new_file(node, name) {
 export async function load_file_system() {
   let fs = null;
   try {
-    const stored_fs = await Storage.load('fs');
+    const stored_fs = await system_storage.load('fs');
     if (!stored_fs) {
       console.warn('[file_system]', 'not found');
-      fs = create_file_system();
+      fs = create_default_file_system();
     } else {
       console.log('[file_system]', 'found');
       fs = stored_fs;
     }
   } catch (e) {
-    fs = create_file_system();
+    fs = create_default_file_system();
   }
   return fs;
 }

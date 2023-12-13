@@ -1,7 +1,7 @@
 import { system } from '../../state/state.js';
 import { idb } from './indexed_db.storage.js';
 
-export const Storage = {
+export const system_storage = {
   save: function (key, data) {
     idb.updateData(key, data);
   },

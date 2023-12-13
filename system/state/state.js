@@ -1,5 +1,4 @@
 let initial_state = {
-  id: 'os',
   file_system: {},
   users: {
     idb: 'users',
