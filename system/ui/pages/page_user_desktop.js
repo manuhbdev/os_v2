@@ -267,7 +267,6 @@ function set_actions(actions) {
           break;
       }
       hide_context_menu();
-      system_storage.save_fs();
     };
   });
 }
@@ -296,15 +295,35 @@ function create_desktop_icon(node) {
   system.ui.desktop_icons.push(desktop_icon);
 }
 function create_all_desktop_icons() {
-  const { desktop_dir } = system.users.current;
+  system.users.current.home_dir = get_home_dir(system.users.current.username);
+  system.users.current.desktop_dir = get_desktop_dir(
+    system.users.current.username
+  );
+
+  const desktop = system.users.current.desktop_dir;
   system.ui.desktop_icons = [];
-  desktop_dir.children.forEach((node) => {
+  desktop.children.forEach((node) => {
     create_desktop_icon(node);
   });
+}
+
+function get_home_dir(username) {
+  const home_dir = system.file_system.children
+    .find((node) => node.name === 'home')
+    .children.find((node) => node.name === username);
+  return home_dir;
+}
+function get_desktop_dir(username) {
+  const desktop_dir = get_home_dir(username).children.find(
+    (node) => node.name === 'Desktop'
+  );
+
+  return desktop_dir;
 }
 function draw_all_desktop_icons() {
   const container = document.querySelector('#icons');
   container.innerHTML = '';
+  console.log(system);
   system.ui.desktop_icons.forEach((icon) => {
     const iconHTML = icon.getHTML();
     const iconImg = iconHTML.querySelector('.img_container');

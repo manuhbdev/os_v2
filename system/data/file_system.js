@@ -121,6 +121,7 @@ export function create_new_dir(node, name) {
   }
 
   node.addChild(new_dir);
+  system_storage.save_fs();
   return new_dir;
 }
 export function create_new_file(node, name) {
@@ -136,6 +137,7 @@ export function create_new_file(node, name) {
   }
 
   node.addChild(new_file);
+  system_storage.save_fs();
   return new_file;
 }
 export async function load_file_system() {

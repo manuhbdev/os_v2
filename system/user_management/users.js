@@ -9,7 +9,7 @@ export async function load_users() {
       console.warn('[users]', 'not found');
       users = get_users_from_directory(system.file_system);
     } else {
-      console.log('[users]', 'found');
+      console.log('[users]', 'found', stored_users);
       users = stored_users;
     }
   } catch (error) {
