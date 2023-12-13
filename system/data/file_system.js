@@ -143,9 +143,10 @@ export function create_new_file(node, name) {
 export async function load_file_system() {
   let fs = null;
   try {
-    const stored_fs = await system_storage.load('fs');
+    const stored_fs = await system_storage.load_fs();
     if (!stored_fs) {
       console.warn('[file_system]', 'not found');
+
       fs = create_default_file_system();
     } else {
       console.log('[file_system]', 'found');

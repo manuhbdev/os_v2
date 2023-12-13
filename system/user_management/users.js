@@ -4,7 +4,7 @@ import { system } from '../state/state.js';
 export async function load_users() {
   let users = null;
   try {
-    const stored_users = await system_storage.load('users');
+    const stored_users = await system_storage.load_users();
     if (!stored_users) {
       console.warn('[users]', 'not found');
       users = get_users_from_directory(system.file_system);
