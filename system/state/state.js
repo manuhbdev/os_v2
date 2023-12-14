@@ -1,7 +1,6 @@
 let initial_state = {
   file_system: {},
   users: {
-    idb: 'users',
     list: [],
     current: null,
   },

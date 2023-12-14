@@ -6,10 +6,10 @@ export async function load_users() {
   try {
     const stored_users = await system_storage.load_users();
     if (!stored_users) {
-      console.warn('[users]', 'not found');
+      // console.warn('[users]', 'not found');
       users = get_users_from_directory(system.file_system);
     } else {
-      console.log('[users]', 'found', stored_users);
+      console.log('users from idb');
       users = stored_users;
     }
   } catch (error) {
@@ -31,7 +31,6 @@ function get_users_from_directory(file_system) {
   }));
 
   return {
-    idb: 'users',
     list: users,
     current: null,
   };

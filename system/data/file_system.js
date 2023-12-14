@@ -69,7 +69,6 @@ export function create_default_file_system() {
   home__directory.addChild(create_vfs_user('guest'));
   home__directory.addChild(create_vfs_user('admin'));
 
-  root.idb = 'fs';
   return root;
 }
 //
@@ -145,11 +144,11 @@ export async function load_file_system() {
   try {
     const stored_fs = await system_storage.load_fs();
     if (!stored_fs) {
-      console.warn('[file_system]', 'not found');
+      // console.warn('[file_system]', 'not found  in idb');
 
       fs = create_default_file_system();
     } else {
-      console.log('[file_system]', 'found', stored_fs);
+      console.log('file_system from idb');
       fs = stored_fs;
     }
   } catch (e) {
